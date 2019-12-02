@@ -1,34 +1,33 @@
 import { BASE_URL, PATH_URL } from '@/const'
 
 export default class Main extends Phaser.Scene {
-  playerSprite: any
-  treasureSprite: any
-  enemiesSprite: any
-  playerSpeed: number
-  enemySpeed: number
-  enemyMaxY: number
-  enemyMinY: number
-  isPlayerAlive: boolean
+  playerSprite: any // 主角精灵
+  treasureSprite: any // 宝箱精灵
+  enemiesSprite: any // 敌人精灵
+  playerSpeed: number // 主角速度
+  enemySpeed: number // 敌人速度
+  enemyMaxY: number // 敌人范围值
+  enemyMinY: number // 敌人范围值
+  isPlayerAlive: boolean // 主角是否还活着
   constructor() {
     super('mainScene')
   }
 
   init() {
-    this.playerSpeed = 11.5
+    this.playerSpeed = 2
     this.enemySpeed = 2
     this.enemyMaxY = 280
     this.enemyMinY = 80
     this.isPlayerAlive = true
-    console.log('init...')
   }
 
   preload() {
     this.load.setBaseURL(BASE_URL)
     this.load.setPath(PATH_URL)
-    this.load.image('background', 'background.png')
-    this.load.image('dragon', 'dragon.png')
-    this.load.image('player', 'player.png')
-    this.load.image('treasure', 'treasure.png')
+    this.load.image('background', 'background.png') // 背景图
+    this.load.image('dragon', 'dragon.png') // 敌人
+    this.load.image('player', 'player.png') // 主角
+    this.load.image('treasure', 'treasure.png') // 宝箱
   }
 
   create() {
@@ -44,7 +43,7 @@ export default class Main extends Phaser.Scene {
       .sprite(width - 80, height * 0.5, 'treasure')
       .setScale(0.6)
 
-    this.enemiesSprite = this.add.group({
+    this.enemiesSprite = this.add.group(undefined, {
       key: 'dragon',
       repeat: 5,
       setXY: {
@@ -110,7 +109,7 @@ export default class Main extends Phaser.Scene {
     const enemiesLen = enemies.length
     for (let i = 0; i < enemiesLen; i++) {
       enemies[i].y += enemies[i].speed
-
+      //   console.log(enemies[i].y)
       if (enemies[i].y >= this.enemyMaxY || enemies[i].y <= this.enemyMinY) {
         enemies[i].speed *= -1
       }
