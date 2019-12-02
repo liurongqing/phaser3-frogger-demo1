@@ -1,30 +1,28 @@
-import { OPTION_GAME } from '@/const'
 import * as scenes from '@/scenes'
-import { os } from '@/utils'
 
 const scene = []
 for (let i in scenes) {
   scene.push(scenes[i])
 }
 
-const scale: any = {
-  parent: OPTION_GAME.parent,
-  autoCenter: Phaser.Scale.CENTER_BOTH,
-  mode: OPTION_GAME.mode,
-  width: OPTION_GAME.width,
-  height: OPTION_GAME.height
-}
-
-if (os.isPc) {
-  scale.max = {
-    width: 375,
-    height: 667
-  }
-}
 const config: any = {
   type: Phaser.AUTO,
   backgroundColor: 0x000000,
-  scale,
+  scale: {
+    parent: 'app',
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+    mode: Phaser.Scale.ENVELOP,
+    width: 640,
+    height: 360,
+    min: {
+      width: 640,
+      height: 360
+    },
+    max: {
+      width: 640,
+      height: 360
+    }
+  },
   scene
 }
 
