@@ -1,6 +1,6 @@
 # 青蛙过河类游戏
 
-演示地址： https://liurongqing.github.io/phaser3-frogger-demo1
+演示地址： https://liurongqing.github.io/phaser3-frogger-demo
 
 ---
 
